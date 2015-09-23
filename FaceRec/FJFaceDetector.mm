@@ -13,6 +13,8 @@
 
 #import "FJFaceDetector.h"
 #import "UIImage+OpenCV.h"
+#import "FJFaceRecognitionViewController.h"
+#import "FJFaceRecognizer.h"
 using namespace cv;
 
 @interface FJFaceDetector () {
@@ -140,18 +142,37 @@ using namespace cv;
         cv::Point center;
         Scalar color = colors[i%8];
         vector<cv::Rect> nestedObjects;
-        rectangle(img,
-                  cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
-                  cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
-                  color, 1, 8, 0);
+//        rectangle(img,
+//                  cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
+//                  cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
+//                  color, 1, 8, 0);
         
         //eye detection is pretty low accuracy
 //        if( self->eyesDetector.empty() )
 //            continue;
 //        
         smallImgROI = smallImg(*r);
-        
+        double confidence;
+        UIImage *sample =  [UIImage imageFromCVMat: smallImgROI.clone()];
+        NSString *name  = [[FJFaceRecognitionViewController getFaceModel] predict:sample confidence:&confidence];
+        NSLog(@"");
+//        NSLog(@"FACE Number: %d", i);
+        NSLog(@"NAME: %@", name);
+//        NSLog(@"CONFIDENCE %@", [@(confidence) stringValue]);
+        NSLog(@"");
+        if ([name  isEqual: @"Person 1"]) {
+            rectangle(img,
+                      cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
+                      cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
+                      color, 1, 8, 0);
+        } else {
+            rectangle(img,
+                      cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
+                      cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
+                      color, CV_FILLED, 8, 0);
+        }
         faceImages.push_back(smallImgROI.clone());
+        
 //
 //        
 //        
@@ -168,6 +189,20 @@ using namespace cv;
 
 
     }
+    
+//    for (int i =0; i < faceImages.size(); i++) {
+//        double confidence;
+//        UIImage *sample =  [UIImage imageFromCVMat: faceImages[i]];
+//        NSString *name  = [[FJFaceRecognitionViewController getFaceModel] predict:sample confidence:&confidence];
+//        NSLog(@"");
+//        NSLog(@"FACE Number: %d", i);
+//        NSLog(@"NAME: %@", name);
+//        NSLog(@"CONFIDENCE %@", [@(confidence) stringValue]);
+//        NSLog(@"");
+//    }
+    
+//    NSLog(@"GET FACE MODEL NUMBER:%d", (int)[FJFaceRecognitionViewController getFaceModel].labels.count);
+    
    
     @synchronized(self) {
         self->_faceImgs = faceImages;

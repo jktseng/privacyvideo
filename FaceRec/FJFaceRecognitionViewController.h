@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FJFaceRecognizer.h"
 
 @interface FJFaceRecognitionViewController : UIViewController
 
 @property (nonatomic, strong) UIImage *inputImage;
+
++ (FJFaceRecognizer *) getFaceModel;
++ (NSURL *)faceModelFileURL;
 
 @end

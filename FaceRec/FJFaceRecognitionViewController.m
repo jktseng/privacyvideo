@@ -24,7 +24,7 @@
     
     _inputImageView.image = _inputImage;
     
-    NSURL *modelURL = [self faceModelFileURL];
+    NSURL *modelURL = [FJFaceRecognitionViewController faceModelFileURL];
     self.faceModel = [FJFaceRecognizer faceRecognizerWithFile:[modelURL path]];
     
     double confidence;
@@ -41,7 +41,12 @@
     
 }
 
-- (NSURL *)faceModelFileURL {
++ (FJFaceRecognizer *) getFaceModel {
+    NSURL *modelURL = [self faceModelFileURL];
+    return [FJFaceRecognizer faceRecognizerWithFile:[modelURL path]];
+}
+
++ (NSURL *) faceModelFileURL {
     NSArray *paths = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
     NSURL *documentsURL = [paths lastObject];
     NSURL *modelURL = [documentsURL URLByAppendingPathComponent:@"face-model.xml"];
@@ -53,7 +58,7 @@
     //Positive feedback for the correct prediction
 
     [_faceModel updateWithFace:_inputImage name:_nameLabel.text];
-    [_faceModel serializeFaceRecognizerParamatersToFile:[[self faceModelFileURL] path]];
+    [_faceModel serializeFaceRecognizerParamatersToFile:[[FJFaceRecognitionViewController faceModelFileURL] path]];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -61,7 +66,7 @@
     //Update our face model with the new person
     NSString *name = [@"Person " stringByAppendingFormat:@"%lu", (unsigned long)_faceModel.labels.count];
     [_faceModel updateWithFace:_inputImage name:name];
-    [_faceModel serializeFaceRecognizerParamatersToFile:[[self faceModelFileURL] path]];
+    [_faceModel serializeFaceRecognizerParamatersToFile:[[FJFaceRecognitionViewController faceModelFileURL] path]];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
