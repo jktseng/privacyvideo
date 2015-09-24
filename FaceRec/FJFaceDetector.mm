@@ -152,25 +152,28 @@ using namespace cv;
 //            continue;
 //        
         smallImgROI = smallImg(*r);
+        
         double confidence;
         UIImage *sample =  [UIImage imageFromCVMat: smallImgROI.clone()];
-        NSString *name  = [[FJFaceRecognitionViewController getFaceModel] predict:sample confidence:&confidence];
-        NSLog(@"");
-//        NSLog(@"FACE Number: %d", i);
-        NSLog(@"NAME: %@", name);
-//        NSLog(@"CONFIDENCE %@", [@(confidence) stringValue]);
-        NSLog(@"");
-        if ([name  isEqual: @"Person 1"]) {
-            rectangle(img,
-                      cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
-                      cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
-                      color, 1, 8, 0);
-        } else {
-            rectangle(img,
-                      cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
-                      cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
-                      color, CV_FILLED, 8, 0);
+        if ([FJFaceRecognitionViewController getFaceModel].labels.count > 10) {
+            NSString *name  = [[FJFaceRecognitionViewController getFaceModel] predict:sample confidence:&confidence];
+//            NSLog(@"");
+//            //        NSLog(@"FACE Number: %d", i);
+//            NSLog(@"NAME: %@", name);
+//            //        NSLog(@"CONFIDENCE %@", [@(confidence) stringValue]);
+//            NSLog(@"");
+            if (![name  isEqual: @"Person 1"]) {
+                rectangle(img,
+                          cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
+                          cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
+                          color, CV_FILLED, 8, 0);
+            }
         }
+        rectangle(img,
+                  cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
+                  cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
+                  color, 1, 8, 0);
+        
         faceImages.push_back(smallImgROI.clone());
         
 //

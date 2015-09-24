@@ -8,6 +8,7 @@
 
 #import "FJLiveCameraViewController.h"
 #import "FJFaceDetector.h"
+#import "ASScreenRecorder.h"
 #import "FJFaceRecognitionViewController.h"
 @interface FJLiveCameraViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;
@@ -54,7 +55,9 @@
 - (void)handleTap:(UITapGestureRecognizer *)tapGesture {
     NSArray *detectedFaces = [self.faceDetector.detectedFaces copy];
     CGSize windowSize = self.view.bounds.size;
+    BOOL record = true;
     for (NSValue *val in detectedFaces) {
+        record = false;
         CGRect faceRect = [val CGRectValue];
         
         CGPoint tapPoint = [tapGesture locationInView:nil];
@@ -64,10 +67,27 @@
             NSLog(@"tapped on face: %@", NSStringFromCGRect(faceRect));
             UIImage *img = [self.faceDetector faceWithIndex:[detectedFaces indexOfObject:val]];
             [self performSegueWithIdentifier:@"RecognizeFace" sender:img];
+            break;
         }
         else {
+            record = true;
             NSLog(@"tapped on no face");
         }
+    }
+    if (record == true) {
+        [self recordScreen];
+    }
+}
+
+- (void)recordScreen {
+    ASScreenRecorder *recorder = [ASScreenRecorder sharedInstance];
+    if (recorder.isRecording) {
+        [recorder stopRecordingWithCompletion:^{
+            NSLog(@"Finished recording");
+        }];
+    } else {
+        [recorder startRecording];
+        NSLog(@"Start recording");
     }
 }
 

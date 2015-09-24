@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B3EDF519E0775A91EF5568C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70A5E7535BA0C31A438E84CE /* libPods.a */; };
+		17796B8B1BB376B700A312F5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17796B8A1BB376B700A312F5 /* CoreGraphics.framework */; };
+		17796B8D1BB376BE00A312F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17796B8C1BB376BE00A312F5 /* UIKit.framework */; };
+		17796B8F1BB376C500A312F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17796B8E1BB376C500A312F5 /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		17796B921BB376E400A312F5 /* ASScreenRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17796B911BB376E400A312F5 /* ASScreenRecorder.m */; settings = {ASSET_TAGS = (); }; };
 		871018331A841928000CEDBD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8710181F1A841928000CEDBD /* AppDelegate.m */; };
 		871018341A841928000CEDBD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871018201A841928000CEDBD /* LaunchScreen.xib */; };
 		871018351A841928000CEDBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871018221A841928000CEDBD /* Main.storyboard */; };
@@ -24,6 +28,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17796B8A1BB376B700A312F5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		17796B8C1BB376BE00A312F5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		17796B8E1BB376C500A312F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		17796B901BB376E400A312F5 /* ASScreenRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASScreenRecorder.h; sourceTree = "<group>"; };
+		17796B911BB376E400A312F5 /* ASScreenRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASScreenRecorder.m; sourceTree = "<group>"; };
 		47A50C0BA07F8CFD52D30073 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		70A5E7535BA0C31A438E84CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8710181E1A841928000CEDBD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -54,6 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17796B8F1BB376C500A312F5 /* Foundation.framework in Frameworks */,
+				17796B8D1BB376BE00A312F5 /* UIKit.framework in Frameworks */,
+				17796B8B1BB376B700A312F5 /* CoreGraphics.framework in Frameworks */,
 				0B3EDF519E0775A91EF5568C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +76,9 @@
 		1FAC551379DD0917CC2BA698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17796B8E1BB376C500A312F5 /* Foundation.framework */,
+				17796B8C1BB376BE00A312F5 /* UIKit.framework */,
+				17796B8A1BB376B700A312F5 /* CoreGraphics.framework */,
 				70A5E7535BA0C31A438E84CE /* libPods.a */,
 			);
 			name = Frameworks;
@@ -72,6 +87,8 @@
 		8710181D1A841928000CEDBD /* FaceRec */ = {
 			isa = PBXGroup;
 			children = (
+				17796B901BB376E400A312F5 /* ASScreenRecorder.h */,
+				17796B911BB376E400A312F5 /* ASScreenRecorder.m */,
 				8710181E1A841928000CEDBD /* AppDelegate.h */,
 				8710181F1A841928000CEDBD /* AppDelegate.m */,
 				871018411A8419C1000CEDBD /* OpenCV Wrappers */,
@@ -271,6 +288,7 @@
 				871018381A841928000CEDBD /* FJFaceRecognizer.mm in Sources */,
 				8710183E1A841928000CEDBD /* UIImage+OpenCV.mm in Sources */,
 				871018331A841928000CEDBD /* AppDelegate.m in Sources */,
+				17796B921BB376E400A312F5 /* ASScreenRecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
