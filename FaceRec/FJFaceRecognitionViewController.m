@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *confidenceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *inputImageView;
+@property (weak, nonatomic) IBOutlet UIButton *exitWIthoutSave;
 
 @property (nonatomic, strong) FJFaceRecognizer *faceModel;
 @end
@@ -51,6 +52,10 @@
     NSURL *documentsURL = [paths lastObject];
     NSURL *modelURL = [documentsURL URLByAppendingPathComponent:@"face-model.xml"];
     return modelURL;
+}
+
+- (IBAction)wrongPhotoTaken:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
