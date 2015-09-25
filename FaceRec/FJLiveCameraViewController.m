@@ -12,7 +12,7 @@
 #import "FJFaceRecognitionViewController.h"
 @interface FJLiveCameraViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;
-
+@property (weak, nonatomic) IBOutlet UIButton *switchCamera;
 @property (nonatomic, strong) FJFaceDetector *faceDetector;
 
 
@@ -28,11 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.faceDetector = [[FJFaceDetector alloc] initWithCameraView:_cameraView scale:2.0];
+    self.faceDetector = [[FJFaceDetector alloc] initWithCameraView:_cameraView scale:2.0 camera:1];
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]
                                  initWithTarget:self
                                  action:@selector(handleTap:)];
-    
     [self.view addGestureRecognizer:_tapGestureRecognizer];
     self.view.userInteractionEnabled = YES;
 }
@@ -78,14 +77,23 @@
         [self recordScreen];
     }
 }
+- (IBAction)switchCamera:(id)sender {
+    [[self faceDetector] switchCamera];
+}
 
 - (void)recordScreen {
     ASScreenRecorder *recorder = [ASScreenRecorder sharedInstance];
     if (recorder.isRecording) {
+        self.switchCamera.userInteractionEnabled = YES;
+        self.switchCamera.enabled = YES;
+        self.switchCamera.hidden = NO;
         [recorder stopRecordingWithCompletion:^{
             NSLog(@"Finished recording");
         }];
     } else {
+        self.switchCamera.userInteractionEnabled = NO;
+        self.switchCamera.enabled = NO;
+        self.switchCamera.hidden = YES;
         [recorder startRecording];
         NSLog(@"Start recording");
     }

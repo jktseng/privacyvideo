@@ -21,6 +21,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hAz-vW-YPY">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zm6-ZE-i1Q">
+                                <rect key="frame" x="78" y="523" width="179" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="SWITCH CAMERA"/>
+                                <connections>
+                                    <action selector="switchCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="702-rh-H6J"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -32,11 +41,13 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="hAz-vW-YPY" id="MyG-6W-Cjy"/>
+                        <outlet property="switchCamera" destination="Zm6-ZE-i1Q" id="7Il-kE-9iT"/>
                         <segue destination="r25-XH-VYp" kind="presentation" identifier="RecognizeFace" id="RAf-uc-bkz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="293" y="210"/>
         </scene>
         <!--Face Recognition View Controller-->
         <scene sceneID="v8W-9c-Cdj">

@@ -33,11 +33,15 @@ using namespace cv;
 
 @implementation FJFaceDetector
 
-- (instancetype)initWithCameraView:(UIImageView *)view scale:(CGFloat)scale {
+- (instancetype)initWithCameraView:(UIImageView *)view scale:(CGFloat)scale camera:(int) frontBack{
     self = [super init];
     if (self) {
         self.videoCamera = [[CvVideoCamera alloc] initWithParentView:view];
-        self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
+        if (frontBack == 1) {
+            self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
+        } else {
+            self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
+        }
         self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
         self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
         self.videoCamera.defaultFPS = 30;
@@ -67,6 +71,9 @@ using namespace cv;
     return self;
 }
 
+- (void)switchCamera {
+    [self.videoCamera switchCameras];
+}
 
 - (void)startCapture {
     [self.videoCamera start];

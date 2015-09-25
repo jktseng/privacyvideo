@@ -13,10 +13,11 @@
 
 @property (nonatomic, strong) CvVideoCamera* videoCamera;
 
-- (instancetype)initWithCameraView:(UIImageView *)view scale:(CGFloat)scale;
+- (instancetype)initWithCameraView:(UIImageView *)view scale:(CGFloat)scale camera:(int) frontBack;
 
 - (void)startCapture;
 - (void)stopCapture;
+- (void)switchCamera;
 
 - (NSArray *)detectedFaces;
 - (UIImage *)faceWithIndex:(NSInteger)idx;
