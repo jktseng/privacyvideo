@@ -26,6 +26,6 @@ XCODE 7 or higher since the application will need to be side loaded.
 
 ___
 
-Directed study project under the supervision of Carman Neustaedter
+Directed study project under the supervision of Carman Neustaedter <br />
 Contributer: Jordan Tseng
 
