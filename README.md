@@ -19,7 +19,10 @@ Open a new terminal and run the following commands:
 * "pod setup"
 * “pod install”
 * Navigate and double click on “iOS-OpenCV-FaceRec.xcworkspace” in the folder.
+* Navigate to the project settings. In “General” change bundle identifier to something unique.
+* Make sure the device is part of the “Team” you selected.
 * Run it by changing the device option to your own device. Click run.
+* If there is a prompt to fix issues click “Fix Issue”
 * There will be a warning pop up asking for security permission. Go to your device’s settings  > general > Profiles and click on the account you are using to run the application. It should be under “Developer App”
 * Click the play button again in the project and the application should be downloaded to the phone.
 
