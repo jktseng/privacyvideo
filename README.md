@@ -13,7 +13,11 @@ Any Apple product that run on iOS will be able to run this application however i
 XCODE 7 or higher since the application will need to be side loaded.  
 
 ## SET-UP:
-* Open a new terminal. cd into the project and run this command: “pod install”
+Open a new terminal and run the following commands:
+* cd into the project
+* "sudo gem install cocoapods"
+* "pod setup"
+* “pod install”
 * Navigate and double click on “iOS-OpenCV-FaceRec.xcworkspace” in the folder.
 * Run it by changing the device option to your own device. Click run.
 * There will be a warning pop up asking for security permission. Go to your device’s settings  > general > Profiles and click on the account you are using to run the application. It should be under “Developer App”
