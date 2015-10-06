@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *confidenceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *inputImageView;
 @property (weak, nonatomic) IBOutlet UIButton *exitWIthoutSave;
-
+@property (nonatomic, strong) NSMutableArray *positiveFaces;
 @property (nonatomic, strong) FJFaceRecognizer *faceModel;
 @end
 
@@ -38,7 +38,7 @@
     
     _nameLabel.text = name;
     _confidenceLabel.text = [@(confidence) stringValue];
-    
+    _positiveFaces = [[NSMutableArray alloc] init];
     
 }
 
@@ -61,7 +61,17 @@
 
 - (IBAction)didTapCorrect:(id)sender {
     //Positive feedback for the correct prediction
-
+    if ([[FJFaceRecognitionViewController loadData] count] == 0) {
+        [[self positiveFaces] addObject:_nameLabel.text];
+        [self saveData:_positiveFaces];
+    } else {
+        _positiveFaces = [FJFaceRecognitionViewController loadData];
+        NSLog(@"%@",_nameLabel.text);
+        if (![_positiveFaces containsObject:_nameLabel.text]) {
+            [[self positiveFaces] addObject:_nameLabel.text];
+            [self saveData:_positiveFaces];
+        }
+    }
     [_faceModel updateWithFace:_inputImage name:_nameLabel.text];
     [_faceModel serializeFaceRecognizerParamatersToFile:[[FJFaceRecognitionViewController faceModelFileURL] path]];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -75,4 +85,57 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)saveData :(NSMutableArray *)dataArray
+{
+    NSFileManager *filemgr;
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    filemgr = [NSFileManager defaultManager];
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(
+                                                   NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    docsDir = [dirPaths objectAtIndex:0];
+    
+    // Build the path to the data file
+    NSString *dataFilePath = [[NSString alloc] initWithString: [docsDir
+                                                                stringByAppendingPathComponent: @"data.archive"]];
+    
+    [NSKeyedArchiver archiveRootObject:
+     dataArray toFile:dataFilePath];
+}
+
+
++ (NSMutableArray *)loadData
+{
+    NSFileManager *filemgr;
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    filemgr = [NSFileManager defaultManager];
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(
+                                                   NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    docsDir = [dirPaths objectAtIndex:0];
+    
+    // Build the path to the data file
+    NSString *dataFilePath = [[NSString alloc] initWithString: [docsDir
+                                                                stringByAppendingPathComponent: @"data.archive"]];
+    
+    // Check if the file already exists
+    if ([filemgr fileExistsAtPath: dataFilePath])
+    {
+        NSMutableArray *dataArray;
+        
+        dataArray = [NSKeyedUnarchiver
+                     unarchiveObjectWithFile: dataFilePath];
+        
+        return dataArray;
+    }
+    return NULL;
+}
 @end

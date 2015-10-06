@@ -15,5 +15,6 @@
 
 + (FJFaceRecognizer *) getFaceModel;
 + (NSURL *)faceModelFileURL;
++ (NSMutableArray *)loadData;
 
 @end

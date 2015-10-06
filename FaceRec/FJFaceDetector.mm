@@ -149,10 +149,6 @@ using namespace cv;
         cv::Point center;
         Scalar color = colors[i%8];
         vector<cv::Rect> nestedObjects;
-//        rectangle(img,
-//                  cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
-//                  cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
-//                  color, 1, 8, 0);
         
         //eye detection is pretty low accuracy
 //        if( self->eyesDetector.empty() )
@@ -164,16 +160,13 @@ using namespace cv;
         UIImage *sample =  [UIImage imageFromCVMat: smallImgROI.clone()];
         if ([FJFaceRecognitionViewController getFaceModel].labels.count > 10) {
             NSString *name  = [[FJFaceRecognitionViewController getFaceModel] predict:sample confidence:&confidence];
-//            NSLog(@"");
-//            //        NSLog(@"FACE Number: %d", i);
-//            NSLog(@"NAME: %@", name);
-//            //        NSLog(@"CONFIDENCE %@", [@(confidence) stringValue]);
-//            NSLog(@"");
-            if (![name  isEqual: @"Person 1"]) {
-                rectangle(img,
-                          cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
-                          cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
-                          color, CV_FILLED, 8, 0);
+            if ([[FJFaceRecognitionViewController loadData] count] != 0) {
+                if (![[FJFaceRecognitionViewController loadData] containsObject:name]) {
+                    rectangle(img,
+                              cvPoint(cvRound(r->x*scale), cvRound(r->y*scale)),
+                              cvPoint(cvRound((r->x + r->width-1)*scale), cvRound((r->y + r->height-1)*scale)),
+                              color, CV_FILLED, 8, 0);
+                }
             }
         }
         rectangle(img,
