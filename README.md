@@ -15,9 +15,9 @@ XCODE 7 or higher since the application will need to be side loaded.
 ## SET-UP:
 Open a new terminal and run the following commands:
 * after cloning the repo cd into the project and run the following commands. <br />
-- sudo gem install cocoapods <br />
-- pod setup <br />
-- pod install <br />
+1) sudo gem install cocoapods <br />
+2) pod setup <br />
+3) pod install <br />
 * Navigate and open the project “iOS-OpenCV-FaceRec.xcworkspace”
 * Navigate to the project settings. In “General” change bundle identifier to something unique.
 * Make sure the iOS device is part of the “Team” you selected.
