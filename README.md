@@ -7,7 +7,7 @@ This application is derived from iOS-OpenCV-FaceRec.
 All credits goes to Engin Kurutepe for making a tutorial for this project to be possible. Please check out: https://www.objc.io/issues/21-camera-and-photos/face-recognition-with-opencv/ for further information about implementing face recognition. 
 
 ## HARDWARE REQUIREMENT:
-Any Apple product that run on iOS will be able to run this application however it is recommended to use iPhone 6 or similar devices for the application to run smoothly.
+Any Apple product that supports iOS 9 and higher. It is recommended to use iPhone 6 or similiar specification for the application to run smoothly.
 
 ## SOFTWARE REQUIREMENT:
 iOS 9 or higher <br />
