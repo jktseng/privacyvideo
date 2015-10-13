@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface FJLiveCameraViewController : UIViewController
+#import <ReplayKit/ReplayKit.h>
+@interface FJLiveCameraViewController : UIViewController<RPScreenRecorderDelegate, RPPreviewViewControllerDelegate>
 
 
 @end

@@ -8,7 +8,6 @@
 
 #import "FJLiveCameraViewController.h"
 #import "FJFaceDetector.h"
-#import "ASScreenRecorder.h"
 #import "FJFaceRecognitionViewController.h"
 @interface FJLiveCameraViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;
@@ -16,7 +15,9 @@
 @property (nonatomic, strong) FJFaceDetector *faceDetector;
 
 
+
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (weak, nonatomic) RPPreviewViewController *previewViewController;
 @end
 
 @implementation FJLiveCameraViewController
@@ -82,20 +83,37 @@
 }
 
 - (void)recordScreen {
-    ASScreenRecorder *recorder = [ASScreenRecorder sharedInstance];
-    if (recorder.isRecording) {
-        self.switchCamera.userInteractionEnabled = YES;
-        self.switchCamera.enabled = YES;
-        self.switchCamera.hidden = NO;
-        [recorder stopRecordingWithCompletion:^{
-            NSLog(@"Finished recording");
+    RPScreenRecorder *sharedRecorder = RPScreenRecorder.sharedRecorder;
+    if(sharedRecorder.isRecording) {
+        RPScreenRecorder *sharedRecorder = RPScreenRecorder.sharedRecorder;
+        [sharedRecorder stopRecordingWithHandler:^(RPPreviewViewController *previewViewController, NSError *error) {
+            if (error) {
+                NSLog(@"stopScreenRecording: %@", error.localizedDescription);
+            } else {
+                self.switchCamera.userInteractionEnabled = YES;
+                self.switchCamera.enabled = YES;
+                self.switchCamera.hidden = NO;
+                if (previewViewController) {
+                    previewViewController.previewControllerDelegate = self;
+                    self.previewViewController = previewViewController;
+                
+                    // RPPreviewViewController only supports full screen modal presentation.
+                    self.previewViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+                
+                    [self.view.window.rootViewController presentViewController:previewViewController animated:YES completion:nil];
+                }
+            }
         }];
     } else {
         self.switchCamera.userInteractionEnabled = NO;
         self.switchCamera.enabled = NO;
         self.switchCamera.hidden = YES;
-        [recorder startRecording];
-        NSLog(@"Start recording");
+        sharedRecorder.delegate = self;
+        [sharedRecorder startRecordingWithMicrophoneEnabled:YES handler:^(NSError *error) {
+            if (error) {
+                NSLog(@"startScreenRecording: %@", error.localizedDescription);
+            }
+        }];
     }
 }
 
@@ -106,6 +124,22 @@
         frvc.inputImage = sender;
 
     }
+}
+
+#pragma mark - RPScreenRecorderDelegate
+
+- (void)screenRecorder:(RPScreenRecorder *)screenRecorder didStopRecordingWithError:(NSError *)error previewViewController:(nullable RPPreviewViewController *)previewViewController {
+    // handle error which caused unexpected stop of recording
+}
+
+- (void)screenRecorderDidChangeAvailability:(RPScreenRecorder *)screenRecorder {
+    // handle screen recorder availability changes
+}
+
+#pragma mark - RPPreviewViewControllerDelegate
+
+- (void)previewControllerDidFinish:(RPPreviewViewController *)previewController {
+    [previewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
