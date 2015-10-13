@@ -4,7 +4,7 @@ A small app demonstrating how OpenCV can be used on iOS to perform face recognit
 
 This application is derived from iOS-OpenCV-FaceRec.
 
-All credits goes to Engin Kurutepe for making a tutorial for this project to be possible. Please check out: https://www.objc.io/issues/21-camera-and-photos/face-recognition-with-opencv/ for further information about implementing face recognition. 
+This project was made possible by using Engin Kurutepe tutorial on face recognition. Please check out: https://www.objc.io/issues/21-camera-and-photos/face-recognition-with-opencv/ for further information about implementing face recognition. 
 
 ## HARDWARE REQUIREMENT:
 Any Apple product that supports iOS 9 and higher. It is recommended to use iPhone 6 or similiar specification for the application to run smoothly.
