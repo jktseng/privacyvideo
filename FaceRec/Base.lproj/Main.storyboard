@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -93,38 +92,24 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confidence:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRi-QR-iVo">
-                                <rect key="frame" x="20" y="222" width="92" height="19.5"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkI-MO-FvD">
-                                <rect key="frame" x="120" y="221" width="28" height="20.5"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNd-nM-ThK">
-                                <rect key="frame" x="20" y="250" width="57" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNd-nM-ThK">
+                                <rect key="frame" x="20" y="250" width="85" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Correct!">
+                                <state key="normal" title="Accept User">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapCorrect:" destination="r25-XH-VYp" eventType="touchUpInside" id="iQS-cB-LKg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Um-Zf-mgr">
-                                <rect key="frame" x="374" y="250" width="206" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Um-Zf-mgr">
+                                <rect key="frame" x="505" y="250" width="75" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Wrong. This is another person">
+                                <state key="normal" title="Block User">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -132,10 +117,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDr-zU-aKg">
-                                <rect key="frame" x="20" y="305" width="133" height="30"/>
+                                <rect key="frame" x="20" y="305" width="203" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Exit Without Saving"/>
+                                <state key="normal" title="Exit Without Making A Choice"/>
                                 <connections>
                                     <action selector="wrongPhotoTaken:" destination="r25-XH-VYp" eventType="touchUpInside" id="zEd-14-7vr"/>
                                 </connections>
@@ -148,22 +133,16 @@
                             <constraint firstItem="ET1-Od-m54" firstAttribute="leading" secondItem="Be0-SW-316" secondAttribute="leadingMargin" id="4Tu-0L-dBd"/>
                             <constraint firstItem="v20-cH-b6g" firstAttribute="baseline" secondItem="jJa-b9-cPF" secondAttribute="baseline" id="Ciw-NI-eDC"/>
                             <constraint firstItem="JWJ-B2-Wsd" firstAttribute="top" secondItem="ET1-Od-m54" secondAttribute="bottom" constant="8" id="Gva-Bi-mpd"/>
-                            <constraint firstItem="oRi-QR-iVo" firstAttribute="top" secondItem="v20-cH-b6g" secondAttribute="bottom" constant="8" symbolic="YES" id="HKj-r6-Qce"/>
                             <constraint firstItem="v20-cH-b6g" firstAttribute="top" secondItem="JWJ-B2-Wsd" secondAttribute="bottom" constant="27" id="HOZ-DL-YIf"/>
                             <constraint firstItem="4Um-Zf-mgr" firstAttribute="trailing" secondItem="Be0-SW-316" secondAttribute="trailingMargin" id="HdV-Pf-dF9"/>
-                            <constraint firstItem="TNd-nM-ThK" firstAttribute="top" secondItem="oRi-QR-iVo" secondAttribute="bottom" constant="9" id="Jbg-PD-j6f"/>
                             <constraint firstItem="JWJ-B2-Wsd" firstAttribute="leading" secondItem="Be0-SW-316" secondAttribute="leadingMargin" id="WZi-O5-xuh"/>
-                            <constraint firstItem="mkI-MO-FvD" firstAttribute="leading" secondItem="oRi-QR-iVo" secondAttribute="trailing" constant="8" id="aBb-De-vOq"/>
-                            <constraint firstItem="mkI-MO-FvD" firstAttribute="baseline" secondItem="oRi-QR-iVo" secondAttribute="baseline" id="an7-X9-Xhd"/>
                             <constraint firstItem="TNd-nM-ThK" firstAttribute="baseline" secondItem="4Um-Zf-mgr" secondAttribute="baseline" id="nTo-D1-NQy"/>
                             <constraint firstItem="jJa-b9-cPF" firstAttribute="leading" secondItem="v20-cH-b6g" secondAttribute="trailing" constant="8" id="pRP-6Z-6FY"/>
-                            <constraint firstItem="v20-cH-b6g" firstAttribute="leading" secondItem="oRi-QR-iVo" secondAttribute="leading" id="tFT-fc-p0r"/>
                             <constraint firstItem="TNd-nM-ThK" firstAttribute="leading" secondItem="Be0-SW-316" secondAttribute="leadingMargin" id="xqa-kC-EGt"/>
                             <constraint firstItem="ET1-Od-m54" firstAttribute="top" secondItem="JOa-aR-MjQ" secondAttribute="bottom" id="yfe-Cg-9DA"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="confidenceLabel" destination="mkI-MO-FvD" id="GkJ-DF-mr5"/>
                         <outlet property="exitWIthoutSave" destination="qDr-zU-aKg" id="73H-1V-b6z"/>
                         <outlet property="inputImageView" destination="JWJ-B2-Wsd" id="nMY-ZK-deF"/>
                         <outlet property="nameLabel" destination="jJa-b9-cPF" id="czn-rJ-d06"/>

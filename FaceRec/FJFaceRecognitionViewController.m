@@ -11,7 +11,6 @@
 
 @interface FJFaceRecognitionViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *confidenceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *inputImageView;
 @property (weak, nonatomic) IBOutlet UIButton *exitWIthoutSave;
 @property (nonatomic, strong) NSMutableArray *positiveFaces;
@@ -37,7 +36,6 @@
     NSString *name = [_faceModel predict:_inputImage confidence:&confidence];
     
     _nameLabel.text = name;
-    _confidenceLabel.text = [@(confidence) stringValue];
     _positiveFaces = [[NSMutableArray alloc] init];
     
 }
@@ -79,6 +77,13 @@
 
 - (IBAction)didTapWrong:(id)sender {
     //Update our face model with the new person
+    if ([[FJFaceRecognitionViewController loadData] count] != 0) {
+        _positiveFaces = [FJFaceRecognitionViewController loadData];
+        NSLog(@"%@",_nameLabel.text);
+        if (![_positiveFaces containsObject:_nameLabel.text]) {
+            [[self positiveFaces] removeObject:_nameLabel.text];
+        }
+    }
     NSString *name = [@"Person " stringByAppendingFormat:@"%lu", (unsigned long)_faceModel.labels.count];
     [_faceModel updateWithFace:_inputImage name:name];
     [_faceModel serializeFaceRecognizerParamatersToFile:[[FJFaceRecognitionViewController faceModelFileURL] path]];
