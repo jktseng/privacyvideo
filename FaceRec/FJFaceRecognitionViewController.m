@@ -77,13 +77,6 @@
 
 - (IBAction)didTapWrong:(id)sender {
     //Update our face model with the new person
-    if ([[FJFaceRecognitionViewController loadData] count] != 0) {
-        _positiveFaces = [FJFaceRecognitionViewController loadData];
-        NSLog(@"%@",_nameLabel.text);
-        if ([_positiveFaces containsObject:_nameLabel.text]) {
-            [[self positiveFaces] removeObject:_nameLabel.text];
-        }
-    }
     NSString *name = [@"Person " stringByAppendingFormat:@"%lu", (unsigned long)_faceModel.labels.count];
     [_faceModel updateWithFace:_inputImage name:name];
     [_faceModel serializeFaceRecognizerParamatersToFile:[[FJFaceRecognitionViewController faceModelFileURL] path]];
