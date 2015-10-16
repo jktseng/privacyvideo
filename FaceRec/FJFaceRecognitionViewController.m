@@ -80,7 +80,7 @@
     if ([[FJFaceRecognitionViewController loadData] count] != 0) {
         _positiveFaces = [FJFaceRecognitionViewController loadData];
         NSLog(@"%@",_nameLabel.text);
-        if (![_positiveFaces containsObject:_nameLabel.text]) {
+        if ([_positiveFaces containsObject:_nameLabel.text]) {
             [[self positiveFaces] removeObject:_nameLabel.text];
         }
     }
