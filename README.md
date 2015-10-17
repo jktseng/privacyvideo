@@ -34,7 +34,7 @@ Open a new terminal and run the following commands:
 * When you are ready to film, tap anywhere on the screen except the peoples face in the frame. You will notice that the button to switch camera from front camera to back camera disappears. This is when you will know you are filming. When you are done filming press anywhere on the screen except the peoples faces again and it will bring back the “Switch camera” button. This is when you know you have stopped filming. The video is stored inside the photos application of the iPhone.
 
 ## MACHINE LEARNING:
-* The software requires a good amount of images to make the correct decisions. The "Recognized Person" is a unique ID that the application thinks the image corresponds to. Since machine learning uses adaptive learning, the user need to make correct decisions for the application so that the chances of recognizing a face is improved. <br />
+* The software requires a good amount of images to make the correct decisions. The "Recognized Person" is a unique ID that the application thinks the image corresponds to. Since machine learning uses adaptive learning, the user need to make correct decisions for the application so that the chances of recognizing a face is improved.
 * The demo uses LBPH algoirthm to do the face recognition since it can be updated with user input without requiring a complete retraining every time a new person is added or a wrong recognition is corrected.
 
 *** Please be aware this is a proof of concept and a prototype. If the application crashes or freezes please restart the application.***
